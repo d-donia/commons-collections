@@ -77,7 +77,7 @@ Alternatively you can pull it from the central Maven repositories:
 Contributing
 ------------
 
-We accept Pull Requests via GitHub. The [developer mailing list][ml] is the main channel of communication for contributors.
+We accept Pull Requests via GitHub. The [developer mailing list][ml]  is the main channel of communication for contributors.
 There are some guidelines which will make applying PRs easier for us:
 + No tabs! Please use spaces for indentation.
 + Respect the code style.
