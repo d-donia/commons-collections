@@ -25,7 +25,7 @@ limitations under the License.
   <property name="localeLanguage" value="en"/>
   <module name="JavadocPackage"/>
   <module name="NewlineAtEndOfFile">
-    <property name="lineSeparator" value="crlf" />
+    <property name="lineSeparator" value="any" />
   </module>
   <module name="FileTabCharacter">
     <property name="fileExtensions" value="java,xml"/>
