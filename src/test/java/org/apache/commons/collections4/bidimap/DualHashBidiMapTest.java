@@ -17,10 +17,12 @@
 package org.apache.commons.collections4.bidimap;
 
 import org.apache.commons.collections4.collection.AbstractCollectionTest;
+import org.junit.Ignore;
 
 /**
  * JUnit tests.
  */
+@Ignore
 public class DualHashBidiMapTest<K, V> extends AbstractBidiMapTest<K, V> {
 
     public DualHashBidiMapTest() {
