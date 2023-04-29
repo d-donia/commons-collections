@@ -93,7 +93,7 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
         return AbstractCollectionTest.UNORDERED;
     }
 
-    @Benchmark
+
     public Map<Integer, String> makeTestMap() {
         final Map<Integer, String> m =
                 new PassiveExpiringMap<>(new TestExpirationPolicy());
@@ -108,27 +108,9 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
 
 
 
-    @Benchmark
-    public void testContainsKey() {
-           final Map<Integer, String> m = makeTestMap();
-           m.containsKey(Integer.valueOf(1));
-           m.containsKey(Integer.valueOf(3));
-           m.containsKey(Integer.valueOf(5));
-           m.containsKey(Integer.valueOf(2));
-           m.containsKey(Integer.valueOf(4));
-           m.containsKey(Integer.valueOf(6));
-    }
 
-    @Benchmark
-    public void testContainsValue() {
-        final Map<Integer, String> m = makeTestMap();
-        m.containsValue("one");
-        m.containsValue("three");
-        m.containsValue("five");
-        m.containsValue("two");
-        m.containsValue("four");
-        m.containsValue("six");
-    }
+
+
     @Benchmark
     public void testDecoratedMap() {
         // entries shouldn't expire
@@ -144,53 +126,49 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
         // adding a single
 
         m.put(Integer.valueOf(2), "two");
-
-
+        m.containsKey(Integer.valueOf(2));
+        m.containsValue("two");
         // adding a single, odd item
         m.put(Integer.valueOf(1), "one-one");
 
     }
 
-    @Benchmark
-    public void testEntrySet() {
-        final Map<Integer, String> m = makeTestMap();
-    }
 
-    @Benchmark
+
+
     public void testExpiration() {
         validateExpiration(new PassiveExpiringMap<String, String>(500), 500);
         validateExpiration(new PassiveExpiringMap<>(
                 new PassiveExpiringMap.ConstantTimeToLiveExpirationPolicy<String, String>(1, TimeUnit.SECONDS)), 1000);
     }
 
+
     @Benchmark
-    public void testGet() {
+    public void testMap() {
         final Map<Integer, String> m = makeTestMap();
 
-    }
-    @Benchmark
-    public void testIsEmpty() {
-        Map<Integer, String> m = makeTestMap();
-        m.isEmpty();
+        // removing a single item
 
-        // remove just evens
-        m = makeTestMap();
         m.remove(Integer.valueOf(2));
-        m.remove(Integer.valueOf(4));
-        m.remove(Integer.valueOf(6));
-        m.isEmpty();
+        // getting an item
+
+        m.get(Integer.valueOf(2));
+
+        // adding a single
+
+        m.put(Integer.valueOf(2), "two");
+        m.containsKey(Integer.valueOf(2));
+        m.containsValue("two");
+        // adding a single, odd item
+        m.put(Integer.valueOf(1), "one-one");
+
+
     }
 
 
 
-    @Benchmark
-    public void testPut() {
-        final Map<Integer, String> m = makeTestMap();
-        m.put(Integer.valueOf(1), "ONE");
 
-    }
 
-    @Benchmark
     public void testZeroTimeToLive() {
         // item should not be available
         final PassiveExpiringMap<String, String> m = new PassiveExpiringMap<>(0L);
