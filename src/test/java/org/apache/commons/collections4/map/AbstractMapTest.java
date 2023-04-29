@@ -38,6 +38,8 @@ import org.apache.commons.collections4.collection.AbstractCollectionTest;
 import org.apache.commons.collections4.keyvalue.DefaultMapEntry;
 import org.apache.commons.collections4.set.AbstractSetTest;
 import org.junit.jupiter.api.Test;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
 
 /**
  * Abstract test class for {@link java.util.Map} methods and contracts.
@@ -129,6 +131,7 @@ import org.junit.jupiter.api.Test;
  * cases.  For example, if your map does not allow duplicate values, override
  * {@link #isAllowDuplicateValues()} and have it return {@code false}
  */
+@State(Scope.Benchmark)
 public abstract class AbstractMapTest<K, V> extends AbstractObjectTest {
 
     /**
@@ -150,6 +153,7 @@ public abstract class AbstractMapTest<K, V> extends AbstractObjectTest {
     // are still equal to the confirmed's collection views.
 
     /** Map created by reset(). */
+
     protected Map<K, V> map;
 
     /** Entry set of map created by reset(). */
