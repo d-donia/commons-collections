@@ -20,7 +20,7 @@ import org.apache.commons.collections4.collection.AbstractCollectionTest;
 import org.apache.commons.collections4.map.AbstractMapTest;
 import org.apache.commons.collections4.map.PassiveExpiringMap;
 import org.apache.commons.collections4.map.PassiveExpiringMap.ExpirationPolicy;
-import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.*;
 
 
 import java.util.HashMap;
@@ -70,7 +70,7 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
     public String getCompatibilityVersion() {
         return "4";
     }
-    @Benchmark
+
     public Map<Integer, String> makeDecoratedTestMap() {
         final Map<Integer, String> m = new HashMap<>();
         m.put(Integer.valueOf(1), "one");
@@ -112,6 +112,11 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
 
 
     @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
+
+
+
     public void testDecoratedMap() {
         // entries shouldn't expire
         final Map<Integer, String> m = makeDecoratedTestMap();
@@ -144,6 +149,8 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
 
 
     @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
     public void testMap() {
         final Map<Integer, String> m = makeTestMap();
 
