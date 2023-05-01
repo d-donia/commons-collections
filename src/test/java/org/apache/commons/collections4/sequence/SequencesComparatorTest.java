@@ -44,6 +44,7 @@ public class SequencesComparatorTest {
         }
     }
 
+
     @Test
     public void testExecution() {
         final ExecutionVisitor<Character> ev = new ExecutionVisitor<>();
