@@ -31,7 +31,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 3)
+@Measurement(iterations = 5)
+@State(Scope.Thread)
 public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
 
     private static class TestExpirationPolicy
@@ -72,32 +76,17 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
         return "4";
     }
 
+    @Param({"10", "100", "1000"})
+    int numEntries;
+
     public Map<Integer, String> makeDecoratedTestMap() {
         final Map<Integer, String> m = new HashMap<>();
-        m.put(Integer.valueOf(1), "value1");
-        m.put(Integer.valueOf(2), "value2");
-        m.put(Integer.valueOf(3), "value3");
-        m.put(Integer.valueOf(4), "value4");
-        m.put(Integer.valueOf(5), "value5");
-        m.put(Integer.valueOf(6), "value6");
-        return new PassiveExpiringMap<>(new TestExpirationPolicy(), m);
-    }
-
-    public Map<Integer, String> makeDecoratedTestMap50() {
-        final Map<Integer, String> m = new HashMap<>();
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= numEntries; i++) {
             m.put(Integer.valueOf(i), "value" + i);
         }
         return new PassiveExpiringMap<>(new TestExpirationPolicy(), m);
     }
 
-    public Map<Integer, String> makeDecoratedTestMap100() {
-        final Map<Integer, String> m = new HashMap<>();
-        for (int i = 1; i <= 100; i++) {
-            m.put(Integer.valueOf(i), "value" + i);
-        }
-        return new PassiveExpiringMap<>(new TestExpirationPolicy(), m);
-    }
 
     @Override
 
@@ -114,36 +103,11 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
     public Map<Integer, String> makeTestMap() {
         final Map<Integer, String> m =
                 new PassiveExpiringMap<>(new TestExpirationPolicy());
-        m.put(Integer.valueOf(1), "value1");
-        m.put(Integer.valueOf(2), "value2");
-        m.put(Integer.valueOf(3), "value3");
-        m.put(Integer.valueOf(4), "value4");
-        m.put(Integer.valueOf(5), "value5");
-        m.put(Integer.valueOf(6), "value6");
-        return m;
-    }
-
-    public Map<Integer, String> makeTestMap50() {
-        final Map<Integer, String> m =
-                new PassiveExpiringMap<>(new TestExpirationPolicy());
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= numEntries; i++) {
             m.put(Integer.valueOf(i), "value" + i);
         }
         return m;
     }
-
-    public Map<Integer, String> makeTestMap100() {
-        final Map<Integer, String> m =
-                new PassiveExpiringMap<>(new TestExpirationPolicy());
-        for (int i = 1; i <= 50; i++) {
-            m.put(Integer.valueOf(i), "value" + i);
-        }
-        return m;
-    }
-
-
-
-
 
 
     @Benchmark
@@ -154,70 +118,23 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
         final Map<Integer, String> m = makeDecoratedTestMap();
 
         // removing a single item
-
         m.remove(Integer.valueOf(2));
-        // getting an item
 
+        // getting an item
         m.get(Integer.valueOf(2));
 
-        // adding a single
-
-        m.put(Integer.valueOf(2), "two");
-        m.containsKey(Integer.valueOf(2));
-        m.containsValue("two");
-        // adding a single, odd item
-        m.put(Integer.valueOf(1), "one-one");
-
-    }
-
-    @Benchmark
-    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
-    @Fork(3)
-    public void testDecoratedMap50() {
-        // entries shouldn't expire
-        final Map<Integer, String> m = makeDecoratedTestMap50();
-
-        // removing a single item
-
-        m.remove(Integer.valueOf(2));
-        // getting an item
-
-        m.get(Integer.valueOf(2));
-
-        // adding a single
-
+        // adding a single item
         m.put(Integer.valueOf(2), "value2");
         m.containsKey(Integer.valueOf(2));
         m.containsValue("value2");
-        // adding a single, odd item
+
+        // adding a single, odd item that expires immediately
         m.put(Integer.valueOf(1), "value1-value1");
+        m.get(Integer.valueOf(1));
+
+        m.clear();
 
     }
-
-    @Benchmark
-    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
-    @Fork(3)
-    public void testDecoratedMap100() {
-        // entries shouldn't expire
-        final Map<Integer, String> m = makeDecoratedTestMap100();
-
-        // removing a single item
-
-        m.remove(Integer.valueOf(2));
-        // getting an item
-
-        m.get(Integer.valueOf(2));
-
-        // adding a single
-
-        m.put(Integer.valueOf(2), "value2");
-        m.containsKey(Integer.valueOf(2));
-        m.containsValue("value2");
-        // adding a single, odd item
-        m.put(Integer.valueOf(1), "value1-value1");
-
-    }
-
 
 
 
@@ -243,66 +160,15 @@ public class PassiveExpiringMapTest<K, V> extends AbstractMapTest<K, V> {
 
         // adding a single
 
-        m.put(Integer.valueOf(2), "two");
-        m.containsKey(Integer.valueOf(2));
-        m.containsValue("two");
-        // adding a single, odd item
-        m.put(Integer.valueOf(1), "one-one");
-
-
-    }
-
-    @Benchmark
-    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
-    @Fork(3)
-    public void testMap50() {
-        final Map<Integer, String> m = makeTestMap50();
-
-        // removing a single item
-
-        m.remove(Integer.valueOf(2));
-        // getting an item
-
-        m.get(Integer.valueOf(2));
-
-        // adding a single
-
         m.put(Integer.valueOf(2), "value2");
         m.containsKey(Integer.valueOf(2));
         m.containsValue("value2");
-        // adding a single, odd item
+        // adding a single, odd item that expires immediately
         m.put(Integer.valueOf(1), "value1-value1");
 
+        m.clear();
 
     }
-
-    @Benchmark
-    @Warmup(iterations = 10, time = 5) @Measurement(iterations = 10, time = 5)
-    @Fork(3)
-    public void testMap100() {
-        final Map<Integer, String> m = makeTestMap100();
-
-        // removing a single item
-
-        m.remove(Integer.valueOf(2));
-        // getting an item
-
-        m.get(Integer.valueOf(2));
-
-        // adding a single
-
-        m.put(Integer.valueOf(2), "value2");
-        m.containsKey(Integer.valueOf(2));
-        m.containsValue("value2");
-        // adding a single, odd item
-        m.put(Integer.valueOf(1), "value1-value1");
-
-
-    }
-
-
-
-
 
     public void testZeroTimeToLive() {
         // item should not be available
