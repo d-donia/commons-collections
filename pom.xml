@@ -655,7 +655,9 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.2.2</version>
         <configuration>
           <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
           <headerLocation>${basedir}/src/conf/license-header.txt</headerLocation>
