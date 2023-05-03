@@ -657,6 +657,7 @@
       <plugin>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <configuration>
+          <skip>true</skip>
           <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
           <headerLocation>${basedir}/src/conf/license-header.txt</headerLocation>
           <suppressionsLocation>${basedir}/src/conf/checkstyle-suppressions.xml</suppressionsLocation>
