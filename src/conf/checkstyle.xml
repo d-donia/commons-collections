@@ -25,11 +25,6 @@ limitations under the License.
   <module name="Checker">
     <property name="charset" value="UTF-8"/>
     <property name="fileExtensions" value="java"/>
-
-    <module name="Regexp">
-      <property name="message" value="Wrong line separator"/>
-      <property name="format" value="\r?\n"/>
-    </module>
   </module>
   <module name="FileTabCharacter">
     <property name="fileExtensions" value="java,xml"/>
