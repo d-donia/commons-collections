@@ -29,7 +29,6 @@ limitations under the License.
     <module name="Regexp">
       <property name="message" value="Wrong line separator"/>
       <property name="format" value="\r?\n"/>
-      <property name="illegalPattern" value="&#13;(?!&lt;n)|(?&lt;!&#13;&lt;r)&lt;n"/>
     </module>
   </module>
   <module name="FileTabCharacter">
