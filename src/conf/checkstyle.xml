@@ -15,7 +15,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <!DOCTYPE module PUBLIC
       "-//Checkstyle//DTD Checkstyle Configuration 1.2//EN"
       "https://checkstyle.org/dtds/configuration_1_2.dtd">
@@ -31,7 +30,7 @@ limitations under the License.
     <module name="Regexp">
       <property name="message" value="Wrong line separator"/>
       <property name="format" value="\r?\n"/>
-      <property name="illegalPattern" value="\r(?!\n)|(?<!\r)\n"/>
+      <property name="illegalPattern" value="\r(?!\n)|(?&lt;!\r)\n"/>
       <property name="fileContentsHolder" value="TextBlockDataHolder"/>
     </module>
   <module name="FileTabCharacter">
