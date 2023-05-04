@@ -116,7 +116,7 @@ public final class SetOperations {
         final int numerator = andCardinality(first, second);
         // Given that the cardinality is an int then the product as a double will not
         // overflow, we can use one sqrt:
-        return numerator == 0 ? 0 : ((double)numerator) / Math.sqrt(cardinality(first) * cardinality(second));
+        return numerator == 0 ? 0 : ((double)numerator) / (double)Math.sqrt(cardinality(first) * (double)cardinality(second));
     }
 
     /**
@@ -136,7 +136,7 @@ public final class SetOperations {
         final int numerator = andCardinality(first, second);
         // Given that the cardinality is an int then the product as a double will not
         // overflow, we can use one sqrt:
-        return numerator == 0 ? 0 : ((double) numerator) / Math.sqrt(first.cardinality() * second.cardinality());
+        return numerator == 0 ? 0 : ((double) numerator) / Math.sqrt((double)first.cardinality() * (double)second.cardinality());
     }
 
     /**
