@@ -33,12 +33,14 @@ import org.apache.commons.collections4.map.AbstractOrderedMapTest;
 import org.apache.commons.collections4.map.LRUMap;
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.infra.BenchmarkParams;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Warmup(iterations = 3)
 @Measurement(iterations = 5)
 @State(Scope.Thread)
+@Fork(3)
 public class LRUMapTest<K, V> extends AbstractOrderedMapTest<K, V> {
 
     public LRUMapTest() {
@@ -73,13 +75,26 @@ public class LRUMapTest<K, V> extends AbstractOrderedMapTest<K, V> {
     @Param({"10", "100", "1000"})
     int numEntries;
 
+    private LRUMap<String, String> map;
+
+    @Setup
+    public void populateLRU(BenchmarkParams params){
+        map = new LRUMap<>(numEntries);
+        if(!params.getBenchmark().contains("testPutLRU")){
+            for(int i=1; i<=numEntries;i++){
+                // Add some entries to the map
+                map.put("key"+i, "value"+i);
+            }
+
+            map.put("key"+numEntries+1, "value"+numEntries+1);
+        }
+    }
+
     @Benchmark
-    public void testLRU() {
+    public void testPut() {
         if (!isPutAddSupported() || !isPutChangeSupported()) {
             return;
         }
-        LRUMap<String, String> map = new LRUMap<>(numEntries);
-
         // Add some entries to the map
 
         for(int i=1; i<=numEntries;i++){
@@ -87,35 +102,16 @@ public class LRUMapTest<K, V> extends AbstractOrderedMapTest<K, V> {
             map.put("key"+i, "value"+i);
         }
 
-        for(int i=1; i<=numEntries;i++){
-            // Check that the entries are in the map
-            map.get("key"+i);
-        }
+        map.put("key"+(numEntries+1), "value"+(numEntries+1));
+        map.put("key"+(numEntries+2), "value"+(numEntries+2));
 
-        // Check that the size of the map is 3
-        map.size();
+    }
 
-        // Remove an entry from the map
-        map.remove("key2");
-
-        // Check that the removed entry is no longer in the map
-        map.get("key2");
-
-        // Add an entry with a null key to the map
-        map.put("key"+(numEntries+1), null);
-
-        // Add more entries to the map than its maximum size
-        map.put("key"+(numEntries+2), "value"+(numEntries+1));
-        map.put("key"+(numEntries+3), "value"+(numEntries+2));
-
-        // Check that the least recently used entries have been removed from the map
-        map.get("key3");
-        map.get("key"+(numEntries+1));
-        map.get("key"+(numEntries+2));
-        map.get("key"+(numEntries+3));
-
-        // Clear the map
-        map.clear();
+    @Benchmark
+    public void testGet() {
+        int randomKey = (int) (Math.random() * numEntries)+1;
+        map.get("key"+randomKey);
+        map.get("key"+1);
 
     }
 
