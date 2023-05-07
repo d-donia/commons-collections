@@ -36,12 +36,13 @@ public class SequencesComparatorTest {
 
     private List<Character> before;
     private List<Character> after;
-
+    private ExecutionVisitor<Character> ev;
     @Setup
     public void setup() {
         before = new ArrayList<>(size);
         after = new ArrayList<>(size);
-
+        ev = new ExecutionVisitor<>();
+        ev.setList(before);
         // Initialize before and after lists with random characters
         Random random = new Random();
         for (int i = 0; i < size; i++) {
@@ -58,8 +59,7 @@ public class SequencesComparatorTest {
 
     @Benchmark
     public void testExecution() {
-        final ExecutionVisitor<Character> ev = new ExecutionVisitor<>();
-        ev.setList(before);
+
         new SequencesComparator<>(before, after).getScript().visit(ev);
     }
 
