@@ -37,6 +37,7 @@ public class SequencesComparatorTest {
     private List<Character> before;
     private List<Character> after;
     private ExecutionVisitor<Character> ev;
+
     @Setup
     public void setup() {
         before = new ArrayList<>(size);
