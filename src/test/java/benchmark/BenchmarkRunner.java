@@ -20,7 +20,7 @@ public class BenchmarkRunner {
 
         public static void main(String[] args) throws Exception {
 
-            String[] benchmarkArgs = new String[] {"PassiveExpiringMapTest"};
+            String[] benchmarkArgs = new String[] {"IteratorUtilsTest"};
             org.openjdk.jmh.Main.main(benchmarkArgs);
     }
 }
