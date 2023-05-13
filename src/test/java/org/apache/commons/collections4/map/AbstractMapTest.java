@@ -37,7 +37,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.collection.AbstractCollectionTest;
 import org.apache.commons.collections4.keyvalue.DefaultMapEntry;
 import org.apache.commons.collections4.set.AbstractSetTest;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
@@ -1561,7 +1560,6 @@ public abstract class AbstractMapTest<K, V> extends AbstractObjectTest {
         return new TestMapEntrySet();
     }
 
-    @Nested
     public class TestMapEntrySet extends AbstractSetTest<Map.Entry<K, V>> {
         public TestMapEntrySet() {
             super("MapEntrySet");
