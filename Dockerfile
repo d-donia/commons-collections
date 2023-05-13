@@ -27,10 +27,8 @@ COPY src ./commons/src/
 COPY src/main/initial/src ./spring-boot/src/
 
 # Install the dependencies for both projects
-RUN mvn -f ./commons/pom.xml clean package
+RUN mvn -f ./commons/pom.xml clean install
 RUN mvn -f ./spring-boot/pom.xml clean package
-
-
 
 # Expose the port that the Spring Boot app is listening on
 EXPOSE 8080
