@@ -26,9 +26,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-@State(Scope.Benchmark)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 3)
+@Measurement(iterations = 5)
+@State(Scope.Thread)
+@Fork(3)
 public class SequencesComparatorTest {
 
     @Param({"10", "100", "1000"})
@@ -75,29 +78,21 @@ public class SequencesComparatorTest {
             index = 0;
         }
 
-        @Override
-        public void visitInsertCommand(final T object) {
-            v.add(index++, object);
-        }
 
         @Override
-        public void visitKeepCommand(final T object) {
-            ++index;
+        public void visitInsertCommand(T object) {
+
         }
 
         @Override
-        public void visitDeleteCommand(final T object) {
-            v.remove(index);
+        public void visitKeepCommand(T object) {
+
         }
 
-        public String getString() {
-            final StringBuilder buffer = new StringBuilder();
-            for (final T c : v) {
-                buffer.append(c);
-            }
-            return buffer.toString();
-        }
+        @Override
+        public void visitDeleteCommand(T object) {
 
+        }
     }
 
 
