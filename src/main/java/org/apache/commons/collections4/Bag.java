@@ -227,6 +227,7 @@ public interface Bag<E> extends Collection<E> {
 //     * @param obj  the Bag to compare to
 //     * @return true if equal
 //     */
+//    boolean equals(Object obj);
 //
 //    /**
 //     * Gets a hash code for the Bag compatible with the definition of equals.
@@ -237,6 +238,6 @@ public interface Bag<E> extends Collection<E> {
 //     *
 //     * @return the hash code of the Bag
 //     */
-
+//    int hashCode();
 
 }
