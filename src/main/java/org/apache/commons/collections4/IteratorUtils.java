@@ -74,12 +74,7 @@ import org.w3c.dom.NodeList;
 public class IteratorUtils {
     // validation is done in this class in certain cases because the
     // public classes allow invalid states
-    /**
-     * A String for Iterator  ("iterator").
-     *
-     * @since 4.5
-     */
-    public static final String ITERATOR = "iterator";
+
     /**
      * An iterator over no elements.
      */
@@ -689,7 +684,7 @@ public class IteratorUtils {
     public static <I, O> Iterator<O> transformedIterator(final Iterator<? extends I> iterator,
             final Transformer<? super I, ? extends O> transformer) {
 
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         Objects.requireNonNull(transformer, "transformer");
         return new TransformIterator<>(iterator, transformer);
     }
@@ -709,7 +704,7 @@ public class IteratorUtils {
      */
     public static <E> Iterator<E> filteredIterator(final Iterator<? extends E> iterator,
                                                    final Predicate<? super E> predicate) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         Objects.requireNonNull(predicate, "predicate");
         return new FilterIterator<>(iterator, predicate);
     }
@@ -932,7 +927,7 @@ public class IteratorUtils {
      * @throws NullPointerException if iterator is null
      */
     public static <E> Enumeration<E> asEnumeration(final Iterator<? extends E> iterator) {
-        return new IteratorEnumeration<>(Objects.requireNonNull(iterator, ITERATOR));
+        return new IteratorEnumeration<>(Objects.requireNonNull(iterator, "iterator"));
     }
 
     /**
@@ -945,7 +940,7 @@ public class IteratorUtils {
      * @throws NullPointerException if iterator is null
      */
     public static <E> Iterable<E> asIterable(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         return new IteratorIterable<>(iterator, false);
     }
 
@@ -959,7 +954,7 @@ public class IteratorUtils {
      * @throws NullPointerException if iterator is null
      */
     public static <E> Iterable<E> asMultipleUseIterable(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         return new IteratorIterable<>(iterator, true);
     }
 
@@ -975,7 +970,7 @@ public class IteratorUtils {
      * @throws NullPointerException if iterator parameter is null
      */
     public static <E> ListIterator<E> toListIterator(final Iterator<? extends E> iterator) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         return new ListIteratorWrapper<>(iterator);
     }
 
@@ -990,7 +985,7 @@ public class IteratorUtils {
      * @throws NullPointerException if iterator parameter is null
      */
     public static Object[] toArray(final Iterator<?> iterator) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         final List<?> list = toList(iterator, 100);
         return list.toArray();
     }
@@ -1009,7 +1004,7 @@ public class IteratorUtils {
      * @throws ArrayStoreException if the arrayClass is invalid
      */
     public static <E> E[] toArray(final Iterator<? extends E> iterator, final Class<E> arrayClass) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         Objects.requireNonNull(arrayClass, "arrayClass");
         final List<E> list = toList(iterator, 100);
         @SuppressWarnings("unchecked")
@@ -1046,7 +1041,7 @@ public class IteratorUtils {
      * @throws IllegalArgumentException if the size is less than 1
      */
     public static <E> List<E> toList(final Iterator<? extends E> iterator, final int estimatedSize) {
-        Objects.requireNonNull(iterator, ITERATOR);
+        Objects.requireNonNull(iterator, "iterator");
         if (estimatedSize < 1) {
             throw new IllegalArgumentException("Estimated size must be greater than 0");
         }
@@ -1110,7 +1105,7 @@ public class IteratorUtils {
             return new ArrayIterator<>(obj);
         }
         try {
-            final Method method = obj.getClass().getMethod(ITERATOR, (Class[]) null);
+            final Method method = obj.getClass().getMethod("iterator", (Class[]) null);
             if (Iterator.class.isAssignableFrom(method.getReturnType())) {
                 final Iterator<?> it = (Iterator<?>) method.invoke(obj, (Object[]) null);
                 if (it != null) {
