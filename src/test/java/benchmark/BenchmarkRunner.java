@@ -20,8 +20,7 @@ public class BenchmarkRunner {
 
         public static void main(String[] args) throws Exception {
 
-            String[] benchmarkArgs = new String[] {"SequencesComparatorTest"};
-            org.openjdk.jmh.Main.main(benchmarkArgs);
+            org.openjdk.jmh.Main.main(args);
     }
 }
 
