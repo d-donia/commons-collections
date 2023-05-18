@@ -1335,7 +1335,7 @@ public class CollectionUtils {
         Objects.requireNonNull(collection, "collection");
         Objects.requireNonNull(elements, "elements");
         boolean changed = false;
-        for (int i = 0; i < elements.length; i++) {
+        for (int i = 0; i < elements.length; ++i) {
             changed |= collection.add(elements[i]);
         }
         return changed;
