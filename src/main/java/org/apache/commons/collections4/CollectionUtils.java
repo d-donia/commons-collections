@@ -194,7 +194,7 @@ public class CollectionUtils {
          * @param count  the count
          */
         public void setCardinality(final O obj, final int count) {
-            for (int i = 0; i < count; i++) {
+            for (int i = 0; i < count; ++i) {
                 newList.add(obj);
             }
         }
@@ -216,7 +216,9 @@ public class CollectionUtils {
      * undesirable. This implementation only implements Collection.
      */
     @SuppressWarnings("rawtypes") // we deliberately use the raw type here
-    public static final Collection EMPTY_COLLECTION = Collections.emptyList();
+    public static final Collection getEmptyCollection() {
+        return Collections.emptyList();
+    }
 
     /**
      * Don't allow instances.
@@ -224,16 +226,15 @@ public class CollectionUtils {
     private CollectionUtils() {}
 
     /**
-     * Returns the immutable EMPTY_COLLECTION with generic type safety.
+     * Returns the immutable emptyList with generic type safety.
      *
-     * @see #EMPTY_COLLECTION
      * @since 4.0
      * @param <T> the element type
      * @return immutable empty collection
      */
     @SuppressWarnings("unchecked") // OK, empty collection is compatible with any type
     public static <T> Collection<T> emptyCollection() {
-        return EMPTY_COLLECTION;
+        return getEmptyCollection();
     }
 
     /**
@@ -1334,8 +1335,8 @@ public class CollectionUtils {
         Objects.requireNonNull(collection, "collection");
         Objects.requireNonNull(elements, "elements");
         boolean changed = false;
-        for (final C element : elements) {
-            changed |= collection.add(element);
+        for (int i = 0; i < elements.length; i++) {
+            changed |= collection.add(elements[i]);
         }
         return changed;
     }
@@ -1513,7 +1514,7 @@ public class CollectionUtils {
         } else if (object instanceof Enumeration<?>) {
             final Enumeration<?> it = (Enumeration<?>) object;
             while (it.hasMoreElements()) {
-                total++;
+                ++total;
                 it.nextElement();
             }
         } else {
@@ -1620,8 +1621,8 @@ public class CollectionUtils {
             tmp = array[j];
             array[j] = array[i];
             array[i] = tmp;
-            j--;
-            i++;
+            --j;
+            ++i;
         }
     }
 

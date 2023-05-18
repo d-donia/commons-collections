@@ -447,7 +447,7 @@ public class CollectionUtilsTest extends MockTestCase {
     @Test
     public void emptyCollection() throws Exception {
         final Collection<Number> coll = CollectionUtils.emptyCollection();
-        assertEquals(CollectionUtils.EMPTY_COLLECTION, coll);
+        assertEquals(CollectionUtils.getEmptyCollection(), coll);
     }
 
     @Test

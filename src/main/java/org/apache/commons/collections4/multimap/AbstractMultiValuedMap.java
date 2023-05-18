@@ -509,7 +509,7 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
         public Object[] toArray() {
             final Collection<V> coll = getMapping();
             if (coll == null) {
-                return CollectionUtils.EMPTY_COLLECTION.toArray();
+                return CollectionUtils.getEmptyCollection().toArray();
             }
             return coll.toArray();
         }
@@ -519,7 +519,7 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
         public <T> T[] toArray(final T[] a) {
             final Collection<V> coll = getMapping();
             if (coll == null) {
-                return (T[]) CollectionUtils.EMPTY_COLLECTION.toArray(a);
+                return (T[]) CollectionUtils.getEmptyCollection().toArray(a);
             }
             return coll.toArray(a);
         }
@@ -528,7 +528,7 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
         public String toString() {
             final Collection<V> coll = getMapping();
             if (coll == null) {
-                return CollectionUtils.EMPTY_COLLECTION.toString();
+                return CollectionUtils.getEmptyCollection().toString();
             }
             return coll.toString();
         }
