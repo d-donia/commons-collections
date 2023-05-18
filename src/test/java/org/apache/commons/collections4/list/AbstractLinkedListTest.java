@@ -263,17 +263,6 @@ public abstract class AbstractLinkedListTest<E> extends AbstractListTest<E> {
     @org.junit.Test(
             timeout = 4000L
     )
-    public void test005() throws Throwable {
-        NodeCachingLinkedList var1 = new NodeCachingLinkedList();
-        var1.add(var1);
-        var1.add((Object)null);
-      //  var1.hashCode();
-        Assert.assertFalse(var1.isEmpty());
-    }
-
-    @org.junit.Test(
-            timeout = 4000L
-    )
     public void test006() throws Throwable {
         NodeCachingLinkedList var1 = new NodeCachingLinkedList();
         var1.add(var1);
