@@ -238,8 +238,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
     @Override
     public boolean containsValue(final Object value) {
         if (value == null) {
-            for (final HashEntry<K, V> element : data) {
-                HashEntry<K, V> entry = element;
+            for (HashEntry<K, V> entry : data) {
                 while (entry != null) {
                     if (entry.getValue() == null) {
                         return true;
@@ -248,8 +247,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
                 }
             }
         } else {
-            for (final HashEntry<K, V> element : data) {
-                HashEntry<K, V> entry = element;
+            for (HashEntry<K, V> entry : data) {
                 while (entry != null) {
                     if (isEqualValue(value, entry.getValue())) {
                         return true;
@@ -356,7 +354,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
      */
     @Override
     public void clear() {
-        modCount++;
+        ++modCount;
         final HashEntry<K, V>[] data = this.data;
         Arrays.fill(data, null);
         size = 0;
@@ -504,10 +502,10 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
      * @param value  the value to add
      */
     protected void addMapping(final int hashIndex, final int hashCode, final K key, final V value) {
-        modCount++;
+        ++modCount;
         final HashEntry<K, V> entry = createEntry(data[hashIndex], hashCode, key, value);
         addEntry(entry, hashIndex);
-        size++;
+        ++size;
         checkCapacity();
     }
 
@@ -553,7 +551,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
      * @param previous  the previous entry in the chain
      */
     protected void removeMapping(final HashEntry<K, V> entry, final int hashIndex, final HashEntry<K, V> previous) {
-        modCount++;
+        ++modCount;
         removeEntry(entry, hashIndex, previous);
         size--;
         destroyEntry(entry);
@@ -624,7 +622,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
             final HashEntry<K, V>[] oldEntries = data;
             final HashEntry<K, V>[] newEntries = new HashEntry[newCapacity];
 
-            modCount++;
+            ++modCount;
             for (int i = oldCapacity - 1; i >= 0; i--) {
                 HashEntry<K, V> entry = oldEntries[i];
                 if (entry != null) {
@@ -1180,11 +1178,10 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
             if (newCurrent == null)  {
                 throw new NoSuchElementException(AbstractHashedMap.NO_NEXT_ENTRY);
             }
-            final HashEntry<K, V>[] data = parent.data;
             int i = hashIndex;
             HashEntry<K, V> n = newCurrent.next;
             while (n == null && i > 0) {
-                n = data[--i];
+                n = parent.data[--i];
             }
             next = n;
             hashIndex = i;
@@ -1275,7 +1272,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
         init();
         threshold = calculateThreshold(capacity, loadFactor);
         data = new HashEntry[capacity];
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; ++i) {
             final K key = (K) in.readObject();
             final V value = (V) in.readObject();
             put(key, value);
