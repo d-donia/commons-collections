@@ -51,6 +51,9 @@ import java.util.stream.IntStream;
  */
 public final class ArrayCountingBloomFilter implements CountingBloomFilter {
 
+    private static final String CONSUMER= "consumer";  // Compliant
+
+
     /**
      * The shape of this Bloom filter.
      */
@@ -160,7 +163,7 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
 
     @Override
     public boolean forEachCount(final BitCountProducer.BitCountConsumer consumer) {
-        Objects.requireNonNull(consumer, "consumer");
+        Objects.requireNonNull(consumer, CONSUMER);
         for (int i = 0; i < counts.length; i++) {
             if (counts[i] != 0 && !consumer.test(i, counts[i])) {
                 return false;
@@ -171,7 +174,7 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
 
     @Override
     public boolean forEachIndex(final IntPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
+        Objects.requireNonNull(consumer, CONSUMER);
         for (int i = 0; i < counts.length; i++) {
             if (counts[i] != 0 && !consumer.test(i)) {
                 return false;
@@ -182,7 +185,7 @@ public final class ArrayCountingBloomFilter implements CountingBloomFilter {
 
     @Override
     public boolean forEachBitMap(final LongPredicate consumer) {
-        Objects.requireNonNull(consumer, "consumer");
+        Objects.requireNonNull(consumer, CONSUMER);
         final int blocksm1 = BitMap.numberOfBitMaps(counts.length) - 1;
         int i = 0;
         long value;

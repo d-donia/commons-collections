@@ -223,19 +223,21 @@ public class MapUtils {
      * @return the value in the Map as a Boolean, {@code null} if null map input
      */
     public static <K> Boolean getBoolean(final Map<? super K, ?> map, final K key) {
+
         if (map != null) {
             final Object answer = map.get(key);
-            if (answer != null) {
-                if (answer instanceof Boolean) {
-                    return (Boolean) answer;
-                }
-                if (answer instanceof String) {
-                    return Boolean.valueOf((String) answer);
-                }
-                if (answer instanceof Number) {
-                    final Number n = (Number) answer;
-                    return n.intValue() != 0 ? Boolean.TRUE : Boolean.FALSE;
-                }
+
+            if (answer instanceof Boolean) {
+                return (Boolean) answer;
+            }
+
+            if (answer instanceof String) {
+                return Boolean.valueOf((String) answer);
+            }
+
+            if (answer instanceof Number) {
+                final Number n = (Number) answer;
+                return n.intValue() != 0 ? Boolean.TRUE : Boolean.FALSE;
             }
         }
         return null;

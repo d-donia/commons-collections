@@ -108,6 +108,8 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
 
     private static final long serialVersionUID = 721969328361807L;
 
+    private static final String EMPTY_MAP_MSG = "Map is empty";
+
     private transient Node<K, V>[] rootNode;
     private transient int nodeCount;
     private transient int modifications;
@@ -325,7 +327,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     @Override
     public K firstKey() {
         if (nodeCount == 0) {
-            throw new NoSuchElementException("Map is empty");
+            throw new NoSuchElementException(EMPTY_MAP_MSG);
         }
         return leastNode(rootNode[KEY.ordinal()], KEY).getKey();
     }
@@ -339,7 +341,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     @Override
     public K lastKey() {
         if (nodeCount == 0) {
-            throw new NoSuchElementException("Map is empty");
+            throw new NoSuchElementException(EMPTY_MAP_MSG);
         }
         return greatestNode(rootNode[KEY.ordinal()], KEY).getKey();
     }
@@ -2125,7 +2127,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         @Override
         public V firstKey() {
             if (TreeBidiMap.this.nodeCount == 0) {
-                throw new NoSuchElementException("Map is empty");
+                throw new NoSuchElementException(EMPTY_MAP_MSG);
             }
             return leastNode(TreeBidiMap.this.rootNode[VALUE.ordinal()], VALUE).getValue();
         }
@@ -2133,7 +2135,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
         @Override
         public V lastKey() {
             if (TreeBidiMap.this.nodeCount == 0) {
-                throw new NoSuchElementException("Map is empty");
+                throw new NoSuchElementException(EMPTY_MAP_MSG);
             }
             return greatestNode(TreeBidiMap.this.rootNode[VALUE.ordinal()], VALUE).getValue();
         }

@@ -46,6 +46,8 @@ import org.apache.commons.collections4.keyvalue.AbstractMapEntryDecorator;
  */
 public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
 
+    private static final String ILLEGAL_STATE_EXCEPTION_MSG = "Iterator remove() can only be called once after next()";
+
     /**
      * Normal delegate map.
      */
@@ -503,7 +505,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
         @Override
         public void remove() {
             if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
+                throw new IllegalStateException(ILLEGAL_STATE_EXCEPTION_MSG);
             }
             final Object value = parent.normalMap.get(lastKey);
             super.remove();
@@ -587,7 +589,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
         @Override
         public void remove() {
             if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
+                throw new IllegalStateException(ILLEGAL_STATE_EXCEPTION_MSG);
             }
             super.remove(); // removes from maps[0]
             parent.reverseMap.remove(lastValue);
@@ -671,7 +673,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
         @Override
         public void remove() {
             if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
+                throw new IllegalStateException(ILLEGAL_STATE_EXCEPTION_MSG);
             }
             // store value as remove may change the entry in the decorator (e.g. TreeMap)
             final Object value = last.getValue();
@@ -754,7 +756,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
         @Override
         public void remove() {
             if (!canRemove) {
-                throw new IllegalStateException("Iterator remove() can only be called once after next()");
+                throw new IllegalStateException(ILLEGAL_STATE_EXCEPTION_MSG);
             }
             // store value as remove may change the entry in the decorator (e.g. TreeMap)
             final V value = last.getValue();
