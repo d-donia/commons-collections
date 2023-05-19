@@ -132,7 +132,10 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
     @Override
     public Collection<Entry<K, V>> entries() {
-        return entryValuesView != null ? entryValuesView : (entryValuesView = new EntryValues());
+        if (entryValuesView == null) {
+            entryValuesView = new EntryValues();
+        }
+        return entryValuesView;
     }
 
     /**
@@ -231,7 +234,12 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
     @Override
     public Collection<V> values() {
         final Collection<V> vs = valuesView;
-        return vs != null ? vs : (valuesView = new Values());
+        if (vs != null) {
+            return vs;
+        } else {
+            valuesView = new Values();
+            return valuesView;
+        }
     }
 
     @Override
@@ -327,7 +335,10 @@ public abstract class AbstractMultiValuedMap<K, V> implements MultiValuedMap<K, 
 
     @Override
     public Map<K, Collection<V>> asMap() {
-        return asMapView != null ? asMapView : (asMapView = new AsMap(map));
+        if (asMapView == null) {
+            asMapView = new AsMap(map);
+        }
+        return asMapView;
     }
 
     /**

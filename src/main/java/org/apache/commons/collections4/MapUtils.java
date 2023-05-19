@@ -1688,9 +1688,10 @@ public class MapUtils {
                 map.put((K) sub[0], (V) sub[1]);
             }
         } else {
-            for (int i = 0; i < array.length - 1;) {
-                // these casts can fail if array has incorrect types
-                map.put((K) array[i++], (V) array[i++]);
+            for (int i = 0; i < array.length - 1; i += 2) {
+                K key = (K) array[i];
+                V value = (V) array[i + 1];
+                map.put(key, value);
             }
         }
         return map;
