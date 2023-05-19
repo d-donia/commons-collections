@@ -45,6 +45,8 @@ public class LoopingListIterator<E> implements ResettableListIterator<E> {
     /** The current list iterator */
     private ListIterator<E> iterator;
 
+    private static final String NO_ELEMENTS_TO_LOOP_EX = "There are no elements for this iterator to loop on";
+
     /**
      * Constructor that wraps a list.
      * <p>
@@ -85,7 +87,7 @@ public class LoopingListIterator<E> implements ResettableListIterator<E> {
     public E next() {
         if (list.isEmpty()) {
             throw new NoSuchElementException(
-                "There are no elements for this iterator to loop on");
+                NO_ELEMENTS_TO_LOOP_EX);
         }
         if (!iterator.hasNext()) {
             reset();
@@ -108,7 +110,7 @@ public class LoopingListIterator<E> implements ResettableListIterator<E> {
     public int nextIndex() {
         if (list.isEmpty()) {
             throw new NoSuchElementException(
-                "There are no elements for this iterator to loop on");
+                NO_ELEMENTS_TO_LOOP_EX);
         }
         if (!iterator.hasNext()) {
             return 0;
@@ -142,7 +144,7 @@ public class LoopingListIterator<E> implements ResettableListIterator<E> {
     public E previous() {
         if (list.isEmpty()) {
             throw new NoSuchElementException(
-                "There are no elements for this iterator to loop on");
+                NO_ELEMENTS_TO_LOOP_EX);
         }
         if (!iterator.hasPrevious()) {
             E result = null;
@@ -170,7 +172,7 @@ public class LoopingListIterator<E> implements ResettableListIterator<E> {
     public int previousIndex() {
         if (list.isEmpty()) {
             throw new NoSuchElementException(
-                "There are no elements for this iterator to loop on");
+                NO_ELEMENTS_TO_LOOP_EX);
         }
         if (!iterator.hasPrevious()) {
             return list.size() - 1;

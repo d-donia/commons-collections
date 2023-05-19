@@ -32,15 +32,15 @@ public abstract class AbstractEmptyMapIterator<K, V> extends AbstractEmptyIterat
     }
 
     public K getKey() {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new IllegalStateException(NO_ELEMENTS_EX);
     }
 
     public V getValue() {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new IllegalStateException(NO_ELEMENTS_EX);
     }
 
     public V setValue(final V value) {
-        throw new IllegalStateException("Iterator contains no elements");
+        throw new IllegalStateException(NO_ELEMENTS_EX);
     }
 
 }

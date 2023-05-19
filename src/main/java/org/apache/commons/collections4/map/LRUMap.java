@@ -71,6 +71,9 @@ public class LRUMap<K, V>
     /** Default maximum size */
     protected static final int DEFAULT_MAX_SIZE = 100;
 
+    private static final String ILLEGAL_STATE_EX_MSG = " This should not occur if your keys are immutable, and you have used synchronization properly.";
+
+
     /** Maximum size */
     private transient int maxSize;
     /** Scan behavior */
@@ -269,7 +272,7 @@ public class LRUMap<K, V>
             // remove
             if (entry.before == null) {
                 throw new IllegalStateException("Entry.before is null." +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
+                    ILLEGAL_STATE_EX_MSG);
             }
             entry.before.after = entry.after;
             entry.after.before = entry.before;
@@ -280,7 +283,7 @@ public class LRUMap<K, V>
             header.before = entry;
         } else if (entry == header) {
             throw new IllegalStateException("Can't move header to MRU" +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
+                    ILLEGAL_STATE_EX_MSG);
         }
     }
 
@@ -382,7 +385,7 @@ public class LRUMap<K, V>
                 throw new IllegalStateException(
                     "Entry.next=null, data[removeIndex]=" + data[removeIndex] + " previous=" + previous +
                     " key=" + key + " value=" + value + " size=" + size + " maxSize=" + maxSize +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
+                    ILLEGAL_STATE_EX_MSG);
             }
 
             // reuse the entry
@@ -394,7 +397,7 @@ public class LRUMap<K, V>
             throw new IllegalStateException(
                     "NPE, entry=" + entry + " entryIsHeader=" + (entry==header) +
                     " key=" + key + " value=" + value + " size=" + size + " maxSize=" + maxSize +
-                    " This should not occur if your keys are immutable, and you have used synchronization properly.");
+                    ILLEGAL_STATE_EX_MSG);
         }
     }
 

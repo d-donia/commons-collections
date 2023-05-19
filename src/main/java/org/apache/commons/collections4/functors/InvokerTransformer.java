@@ -43,6 +43,10 @@ public class InvokerTransformer<I, O> implements Transformer<I, O> {
     /** The array of reflection arguments */
     private final Object[] iArgs;
 
+    private static final String INVOKER_EX_MSG = "InvokerTransformer: The method '";
+    private static final String ON = "' on '";
+
+
     /**
      * Gets an instance of this transformer calling a specific method with no arguments.
      *
@@ -127,13 +131,13 @@ public class InvokerTransformer<I, O> implements Transformer<I, O> {
             final Method method = cls.getMethod(iMethodName, iParamTypes);
             return (O) method.invoke(input, iArgs);
         } catch (final NoSuchMethodException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
+            throw new FunctorException(INVOKER_EX_MSG + iMethodName + ON +
                                        input.getClass() + "' does not exist");
         } catch (final IllegalAccessException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
+            throw new FunctorException(INVOKER_EX_MSG + iMethodName + ON +
                                        input.getClass() + "' cannot be accessed");
         } catch (final InvocationTargetException ex) {
-            throw new FunctorException("InvokerTransformer: The method '" + iMethodName + "' on '" +
+            throw new FunctorException(INVOKER_EX_MSG + iMethodName + ON +
                                        input.getClass() + "' threw an exception", ex);
         }
     }
