@@ -62,6 +62,11 @@ public class IterableUtils {
     };
 
     /**
+     * Don't allow instances.
+     */
+    private IterableUtils() {}
+
+    /**
      * Gets an empty iterable.
      * <p>
      * This iterable does not contain any elements.
