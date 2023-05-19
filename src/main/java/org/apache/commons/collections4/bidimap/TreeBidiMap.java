@@ -1310,6 +1310,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
     private void insertValue(final Node<K, V> newNode) throws IllegalArgumentException {
         Node<K, V> node = rootNode[VALUE.ordinal()];
 
+        boolean shouldBreak = false;
         while (true) {
             final int cmp = compare(newNode.getValue(), node.getValue());
 
@@ -1323,7 +1324,7 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
                     newNode.setParent(node, VALUE);
                     doRedBlackInsert(newNode, VALUE);
 
-                    break;
+                    shouldBreak = true;
                 }
                 node = node.getLeft(VALUE);
             } else { // cmp > 0
@@ -1332,9 +1333,13 @@ public class TreeBidiMap<K extends Comparable<K>, V extends Comparable<V>>
                     newNode.setParent(node, VALUE);
                     doRedBlackInsert(newNode, VALUE);
 
-                    break;
+                    shouldBreak = true;
                 }
                 node = node.getRight(VALUE);
+            }
+
+            if (shouldBreak) {
+                break;
             }
         }
     }
