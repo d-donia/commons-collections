@@ -199,14 +199,14 @@ public class TreeList<E> extends AbstractList<E> {
      */
     @Override
     public void add(final int index, final E obj) {
-        modCount++;
+        ++modCount;
         checkInterval(index, 0, size());
         if (root == null) {
             root = new AVLNode<>(index, obj, null, null);
         } else {
             root = root.insert(index, obj);
         }
-        size++;
+        ++size;
     }
 
     /**
@@ -257,7 +257,7 @@ public class TreeList<E> extends AbstractList<E> {
      */
     @Override
     public E remove(final int index) {
-        modCount++;
+        ++modCount;
         checkInterval(index, 0, size() - 1);
         final E result = get(index);
         root = root.remove(index);
@@ -270,7 +270,7 @@ public class TreeList<E> extends AbstractList<E> {
      */
     @Override
     public void clear() {
-        modCount++;
+        ++modCount;
         root = null;
         size = 0;
     }
@@ -506,7 +506,7 @@ public class TreeList<E> extends AbstractList<E> {
             }
 
             if (relativePosition >= 0) {
-                relativePosition++;
+                ++relativePosition;
             }
             final AVLNode<E> ret = balance();
             recalcHeight();
@@ -574,7 +574,7 @@ public class TreeList<E> extends AbstractList<E> {
             if (indexRelativeToMe > 0) {
                 setRight(right.remove(indexRelativeToMe), right.right);
                 if (relativePosition < 0) {
-                    relativePosition++;
+                    ++relativePosition;
                 }
             } else {
                 setLeft(left.remove(indexRelativeToMe), left.left);
@@ -592,7 +592,7 @@ public class TreeList<E> extends AbstractList<E> {
             }
             setRight(right.removeMax(), right.right);
             if (relativePosition < 0) {
-                relativePosition++;
+                ++relativePosition;
             }
             recalcHeight();
             return balance();
@@ -641,7 +641,7 @@ public class TreeList<E> extends AbstractList<E> {
                 }
                 right = right.removeMin();
                 if (relativePosition < 0) {
-                    relativePosition++;
+                    ++relativePosition;
                 }
             } else {
                 // more on the left or equal, so delete from the left
@@ -882,7 +882,7 @@ public class TreeList<E> extends AbstractList<E> {
             otherTreeMin.setLeft(s, maxNode);
             if (otherTree != null) {
                 otherTree.min().setLeft(null, otherTreeMin);
-                otherTree.relativePosition++;
+                ++otherTree.relativePosition;
             }
             if (s != null) {
                 s.max().setRight(null, otherTreeMin);
@@ -1099,7 +1099,7 @@ public class TreeList<E> extends AbstractList<E> {
             next = null;
             current = null;
             currentIndex = -1;
-            expectedModCount++;
+            ++expectedModCount;
         }
 
         @Override
@@ -1117,8 +1117,8 @@ public class TreeList<E> extends AbstractList<E> {
             parent.add(nextIndex, obj);
             current = null;
             currentIndex = -1;
-            nextIndex++;
-            expectedModCount++;
+            ++nextIndex;
+            ++expectedModCount;
         }
     }
 
