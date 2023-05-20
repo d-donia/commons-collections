@@ -28,7 +28,7 @@ public abstract class AbstractEmptyMapIterator<K, V> extends AbstractEmptyIterat
     /**
      * Create a new AbstractEmptyMapIterator.
      */
-    public AbstractEmptyMapIterator() {
+    protected AbstractEmptyMapIterator() {
     }
 
     public K getKey() {
