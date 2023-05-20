@@ -392,7 +392,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
             }
             boolean modified = false;
             for (final Object current : coll) {
-                modified |= remove(current);
+                modified |= super.remove(current);
             }
             return modified;
         }
@@ -704,7 +704,7 @@ public abstract class AbstractDualBidiMap<K, V> implements BidiMap<K, V> {
 
         @Override
         public V setValue(final V value) {
-            final K key = getKey();
+            final K key = super.getKey();
             if (parent.reverseMap.containsKey(value) &&
                 parent.reverseMap.get(value) != key) {
                 throw new IllegalArgumentException(
