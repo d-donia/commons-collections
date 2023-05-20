@@ -255,7 +255,7 @@ public class SetUtils {
      */
     public static <E> HashSet<E> hashSet(final E... items) {
         if (items == null) {
-            return null;
+            return new HashSet<>();
         }
         return new HashSet<>(Arrays.asList(items));
     }
