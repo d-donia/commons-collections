@@ -102,6 +102,12 @@ public class CollectionUtils {
      */
     public static final String COLL2_PARAM = "coll2";
     /**
+     * A String for Comma ("equator").
+     *
+     * @since 4.5
+     */
+    public static final String EQUATOR = "equator";
+    /**
      * Helper class to easily access cardinality properties of two collections.
      * @param <O>  the element type
      */
@@ -675,7 +681,7 @@ public class CollectionUtils {
                                                 final Equator<? super E> equator) {
         Objects.requireNonNull(a, "a");
         Objects.requireNonNull(b, "b");
-        Objects.requireNonNull(equator, "equator");
+        Objects.requireNonNull(equator, EQUATOR);
 
         if (a.size() != b.size()) {
             return false;
@@ -703,7 +709,7 @@ public class CollectionUtils {
      */
     public static <E> int hashCode(final Collection<? extends E> collection,
             final Equator<? super E> equator) {
-        Objects.requireNonNull(equator, "equator");
+        Objects.requireNonNull(equator, EQUATOR);
         if (null == collection) {
             return 0;
         }
@@ -1898,7 +1904,7 @@ public class CollectionUtils {
                                               final Equator<? super E> equator) {
         Objects.requireNonNull(collection, "collection");
         Objects.requireNonNull(retain, "retain");
-        Objects.requireNonNull(equator, "equator");
+        Objects.requireNonNull(equator, EQUATOR);
         final Transformer<E, EquatorWrapper<E>> transformer = input -> new EquatorWrapper<>(equator, input);
 
         final Set<EquatorWrapper<E>> retainSet =
@@ -2037,7 +2043,7 @@ public class CollectionUtils {
                                               final Equator<? super E> equator) {
         Objects.requireNonNull(collection, "collection");
         Objects.requireNonNull(remove, "remove");
-        Objects.requireNonNull(equator, "equator");
+        Objects.requireNonNull(equator, EQUATOR);
         final Transformer<E, EquatorWrapper<E>> transformer = input -> new EquatorWrapper<>(equator, input);
 
         final Set<EquatorWrapper<E>> removeSet =
