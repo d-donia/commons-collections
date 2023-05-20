@@ -96,6 +96,12 @@ public class CollectionUtils {
      */
     public static final String COLL1_PARAM = "coll1";
     /**
+     * A String for Comma ("coll2").
+     *
+     * @since 4.5
+     */
+    public static final String COLL2_PARAM = "coll2";
+    /**
      * Helper class to easily access cardinality properties of two collections.
      * @param <O>  the element type
      */
@@ -434,7 +440,7 @@ public class CollectionUtils {
      */
     public static boolean containsAll(final Collection<?> coll1, final Collection<?> coll2) {
         Objects.requireNonNull(coll1, COLL1_PARAM );
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll2, COLL2_PARAM);
         if (coll2.isEmpty()) {
             return true;
         }
@@ -477,7 +483,7 @@ public class CollectionUtils {
      */
     public static <T> boolean containsAny(final Collection<?> coll1, @SuppressWarnings("unchecked") final T... coll2) {
         Objects.requireNonNull(coll1, COLL1_PARAM );
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll2, COLL2_PARAM);
         if (coll1.size() < coll2.length) {
             for (final Object aColl1 : coll1) {
                 if (ArrayUtils.contains(coll2, aColl1)) {
@@ -510,7 +516,7 @@ public class CollectionUtils {
      */
     public static boolean containsAny(final Collection<?> coll1, final Collection<?> coll2) {
         Objects.requireNonNull(coll1, COLL1_PARAM );
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll2, COLL2_PARAM);
         if (coll1.size() < coll2.size()) {
             for (final Object aColl1 : coll1) {
                 if (coll2.contains(aColl1)) {
