@@ -19,6 +19,7 @@ package org.apache.commons.collections4.iterators;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Adapter to make {@link Enumeration Enumeration} instances appear
@@ -88,6 +89,9 @@ public class EnumerationIterator<E> implements Iterator<E> {
      */
     @Override
     public E next() {
+        if (!enumeration.hasMoreElements()) {
+            throw new NoSuchElementException("No more elements in the collection.");
+        }
         last = enumeration.nextElement();
         return last;
     }
