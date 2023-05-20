@@ -61,7 +61,7 @@ public abstract class AbstractSortedMapDecorator<K, V> extends AbstractMapDecora
      * @param map  the map to decorate, must not be null
      * @throws NullPointerException if the map is null
      */
-    public AbstractSortedMapDecorator(final SortedMap<K, V> map) {
+    protected AbstractSortedMapDecorator(final SortedMap<K, V> map) {
         super(map);
     }
 
