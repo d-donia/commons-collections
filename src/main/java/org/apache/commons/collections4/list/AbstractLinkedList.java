@@ -139,7 +139,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             if (isEqualValue(node.getValue(), value)) {
                 return i;
             }
-            i++;
+            ++i;
         }
         return CollectionUtils.INDEX_NOT_FOUND;
     }
@@ -508,8 +508,8 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         nodeToInsert.previous = insertBeforeNode.previous;
         insertBeforeNode.previous.next = nodeToInsert;
         insertBeforeNode.previous = nodeToInsert;
-        size++;
-        modCount++;
+        ++size;
+        ++modCount;
     }
 
     /**
@@ -523,7 +523,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         node.previous.next = node.next;
         node.next.previous = node.previous;
         size--;
-        modCount++;
+        ++modCount;
     }
 
     /**
@@ -533,7 +533,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         header.next = header;
         header.previous = header;
         size = 0;
-        modCount++;
+        ++modCount;
     }
 
     /**
@@ -836,7 +836,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             final E value = next.getValue();
             current = next;
             next = next.next;
-            nextIndex++;
+            ++nextIndex;
             return value;
         }
 
@@ -882,7 +882,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
                 nextIndex--;
             }
             current = null;
-            expectedModCount++;
+            ++expectedModCount;
         }
 
         @Override
@@ -896,8 +896,8 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             checkModCount();
             parent.addNodeBefore(next, obj);
             current = null;
-            nextIndex++;
-            expectedModCount++;
+            ++nextIndex;
+            ++expectedModCount;
         }
 
     }
@@ -934,7 +934,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         public void add(final E obj) {
             super.add(obj);
             sub.expectedModCount = parent.modCount;
-            sub.size++;
+            ++sub.size;
         }
 
         @Override
@@ -993,8 +993,8 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             checkModCount();
             parent.add(index + offset, obj);
             expectedModCount = parent.modCount;
-            size++;
-            modCount++;
+            ++size;
+            ++modCount;
         }
 
         @Override
@@ -1004,7 +1004,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             final E result = parent.remove(index + offset);
             expectedModCount = parent.modCount;
             size--;
-            modCount++;
+            ++modCount;
             return result;
         }
 
@@ -1025,7 +1025,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
             parent.addAll(offset + index, coll);
             expectedModCount = parent.modCount;
             size += cSize;
-            modCount++;
+            ++modCount;
             return true;
         }
 
