@@ -567,7 +567,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         if (index < size / 2) {
             // Search forwards
             node = header.next;
-            for (int currentIndex = 0; currentIndex < index; currentIndex++) {
+            for (int currentIndex = 0; currentIndex < index; ++currentIndex) {
                 node = node.next;
             }
         } else {
@@ -632,7 +632,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
     protected void doReadObject(final ObjectInputStream inputStream) throws IOException, ClassNotFoundException {
         init();
         final int size = inputStream.readInt();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; ++i) {
             add((E) inputStream.readObject());
         }
     }
