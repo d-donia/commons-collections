@@ -1046,7 +1046,7 @@ public class TreeList<E> extends AbstractList<E> {
             }
             final E value = next.getValue();
             current = next;
-            currentIndex = ++nextIndex;
+            currentIndex = nextIndex++;
             next = next.next();
             return value;
         }

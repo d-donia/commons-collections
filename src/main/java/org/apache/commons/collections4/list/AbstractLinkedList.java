@@ -187,7 +187,7 @@ public abstract class AbstractLinkedList<E> implements List<E> {
         }
         // Copy the values into the array
         int i = 0;
-        for (Node<E> node = header.next; node != header; node = node.next, i++) {
+        for (Node<E> node = header.next; node != header; node = node.next, ++i) {
             array[i] = (T) node.getValue();
         }
         // Set the value after the last value to null
