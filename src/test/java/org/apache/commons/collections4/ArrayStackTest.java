@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
  * Tests ArrayStack.
  */
 @SuppressWarnings("deprecation") // we test a deprecated class
-public class ArrayStackTest<E> extends AbstractArrayListTest<E> {
+class ArrayStackTest<E> extends AbstractArrayListTest<E> {
 
     public ArrayStackTest() {
         super(ArrayStackTest.class.getSimpleName());
