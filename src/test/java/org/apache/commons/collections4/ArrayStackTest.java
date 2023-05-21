@@ -38,7 +38,7 @@ class ArrayStackTest<E> extends AbstractArrayListTest<E> {
     }
 
     @Test
-    public void testNewStack() {
+    void testNewStack() {
         final ArrayStack<E> stack = makeObject();
         assertTrue("New stack is empty", stack.empty());
         assertEquals("New stack has size zero", 0, stack.size());
@@ -50,7 +50,7 @@ class ArrayStackTest<E> extends AbstractArrayListTest<E> {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void testPushPeekPop() {
+     void testPushPeekPop() {
         final ArrayStack<E> stack = makeObject();
 
         stack.push((E) "First Item");
