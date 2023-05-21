@@ -177,7 +177,7 @@ public class PropertiesFactory extends AbstractPropertiesFactory<Properties> {
         @SuppressWarnings("resource")
         @Override
         public synchronized void loadFromXML(final InputStream in)
-            throws IOException, InvalidPropertiesFormatException {
+            throws IOException {
             Objects.requireNonNull(in);
             throw new UnsupportedOperationException();
         }
