@@ -321,7 +321,7 @@ public class PropertiesFactory extends AbstractPropertiesFactory<Properties> {
      *
      * @since 4.5
      */
-    public static final Properties EMPTY_PROPERTIES = new EmptyProperties();
+    protected static final Properties EMPTY_PROPERTIES = new EmptyProperties();
 
     /**
      * The singleton instance.
