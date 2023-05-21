@@ -99,7 +99,7 @@ public abstract class AbstractPropertiesFactory<T extends Properties> {
      * @throws SecurityException        Thrown if a security manager's {@code checkRead} method denies read access to
      *                                  the file.
      */
-    public T load(final File file) throws FileNotFoundException, IOException {
+    public T load(final File file) throws IOException {
         try (FileInputStream inputStream = new FileInputStream(file)) {
             return load(inputStream, PropertyFormat.toPropertyFormat(file.getName()));
         }
