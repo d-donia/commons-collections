@@ -47,21 +47,21 @@ public class IteratorUtilsTest {
     }
 
     @Benchmark
-    public List<Integer> testToList() {
+    public void testToListBench() {
         Iterator<Integer> iterator = list.iterator();
-        return IteratorUtils.toList(iterator);
+        IteratorUtils.toList(iterator);
     }
 
     @Benchmark
-    public void testForEach() {
+    public void testForEachBench() {
         Iterator<Integer> iterator = list.iterator();
         IteratorUtils.forEach(iterator, integer -> {});
     }
 
     @Benchmark
-    public List<Integer> testToArray() {
+    public void testToArrayBench() {
         Iterator<Integer> iterator = list.iterator();
-        return IteratorUtils.toList(iterator);
+        IteratorUtils.toArray(list.iterator());
     }
 
 }
