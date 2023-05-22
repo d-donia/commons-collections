@@ -550,7 +550,8 @@ public class HashedMapTest<K, V> extends AbstractIterableMapTest<K, V> {
     public void test037()  throws Throwable  {
         AbstractHashedMap<Comparable<Integer>, Map.Entry<Integer, Integer>> abstractHashedMap0 = new AbstractHashedMap<Comparable<Integer>, Map.Entry<Integer, Integer>>(16384, 1045.3469F);
         // Undeclared exception!
-        abstractHashedMap0.containsValue((Object) null);
+        boolean containsNullValue = abstractHashedMap0.containsValue((Object) null);
+        assertFalse(containsNullValue);
     }
 
     @Test
@@ -693,6 +694,7 @@ public class HashedMapTest<K, V> extends AbstractIterableMapTest<K, V> {
         AbstractHashedMap.HashMapIterator<Integer, Object> abstractHashedMap_HashMapIterator0 = new AbstractHashedMap.HashMapIterator<Integer, Object>(abstractHashedMap0);
         AbstractHashedMap.HashEntry<Integer, Object> abstractHashedMap_HashEntry0 = new AbstractHashedMap.HashEntry<Integer, Object>((AbstractHashedMap.HashEntry<Integer, Object>) null, 75, abstractHashedMap_HashMapIterator0, (Object) null);
         AbstractMap.SimpleEntry<Integer, Object> abstractMap_SimpleEntry0 = new AbstractMap.SimpleEntry<Integer, Object>(abstractHashedMap_HashEntry0);
+        assertNotNull(abstractMap_SimpleEntry0);
     }
 
     @Test
