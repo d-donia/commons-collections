@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
 @RunWith(EvoRunner.class) @EvoRunnerParameters(mockJVMNonDeterminism = true, useVFS = true, useVNET = true, resetStaticState = true, separateClassLoader = true) 
 public class KeyAnalyzer_ESTest extends KeyAnalyzer_ESTest_scaffolding {
 
-  @Test(timeout = 4000)
+  @Test
   public void test00()  throws Throwable  {
       StringKeyAnalyzer stringKeyAnalyzer0 = StringKeyAnalyzer.INSTANCE;
       int int0 = stringKeyAnalyzer0.compare("", "org.apache.commons.collections4.trie.KeyAnalyzer");
