@@ -24,7 +24,7 @@ import java.util.function.Consumer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
- class EntrySetMapIteratorTest {
+ public class EntrySetMapIteratorTest {
     @Test(timeout = 4000)
      void test00()  throws Throwable  {
         HashMap<Integer, Integer> hashMap0 = new HashMap<Integer, Integer>();
