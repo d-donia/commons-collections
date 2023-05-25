@@ -94,29 +94,29 @@ public class TransformedNavigableSetTest<E> extends AbstractNavigableSetTest<E> 
 //        resetFull();
 //        writeExternalFormToDisk((java.io.Serializable) getCollection(), "src/test/resources/data/test/TransformedNavigableSet.fullCollection.version4.1.obj");
 //    }
-@Test
-@Timeout(4000)
-public void test00()  throws Throwable  {
-    TreeSet<TreeSet<Object>> treeSet0 = new TreeSet<TreeSet<Object>>();
-    TreeSet<Object> treeSet1 = new TreeSet<Object>();
-    ConstantTransformer<Object, TreeSet<Object>> constantTransformer0 = new ConstantTransformer<Object, TreeSet<Object>>(treeSet1);
-    TransformedNavigableSet<TreeSet<Object>> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<TreeSet<Object>>) treeSet0, (Transformer<? super TreeSet<Object>, ? extends TreeSet<Object>>) constantTransformer0);
-    // Undeclared exception!
-    try {
-        transformedNavigableSet0.subSet(treeSet1, false, treeSet1, true);
-        fail("Expecting exception: ClassCastException");
+    @Test
+    @Timeout(4000)
+     void test00()  throws Throwable  {
+        TreeSet<TreeSet<Object>> treeSet0 = new TreeSet<TreeSet<Object>>();
+        TreeSet<Object> treeSet1 = new TreeSet<Object>();
+        ConstantTransformer<Object, TreeSet<Object>> constantTransformer0 = new ConstantTransformer<Object, TreeSet<Object>>(treeSet1);
+        TransformedNavigableSet<TreeSet<Object>> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<TreeSet<Object>>) treeSet0, (Transformer<? super TreeSet<Object>, ? extends TreeSet<Object>>) constantTransformer0);
+        // Undeclared exception!
+        try {
+            transformedNavigableSet0.subSet(treeSet1, false, treeSet1, true);
+            fail("Expecting exception: ClassCastException");
 
-    } catch(ClassCastException e) {
-        //
-        // java.util.TreeSet cannot be cast to java.lang.Comparable
-        //
-      assertTrue(true);
+        } catch(ClassCastException e) {
+            //
+            // java.util.TreeSet cannot be cast to java.lang.Comparable
+            //
+          assertTrue(true);
+        }
     }
-}
 
     @Test
     @Timeout(4000)
-    public void test01()  throws Throwable  {
+     void test01()  throws Throwable  {
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("");
         TransformedNavigableSet<Integer> transformedNavigableSet0 = new TransformedNavigableSet<Integer>(treeSet0, transformer0);
@@ -126,7 +126,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test02()  throws Throwable  {
+     void test02()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         Transformer<Object, Object> transformer0 = InvokerTransformer.invokerTransformer("");
         TransformedNavigableSet<Object> transformedNavigableSet0 = new TransformedNavigableSet<Object>(treeSet0, transformer0);
@@ -137,7 +137,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test03()  throws Throwable  {
+     void test03()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("7i@O");
         TransformedNavigableSet<Object> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Object>) treeSet0, (Transformer<? super Object, ?>) transformer0);
@@ -148,7 +148,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test04()  throws Throwable  {
+     void test04()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         treeSet0.add("7i@O");
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("7i@O");
@@ -159,7 +159,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test05()  throws Throwable  {
+     void test05()  throws Throwable  {
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("");
         // Undeclared exception!
         try {
@@ -176,7 +176,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test06()  throws Throwable  {
+     void test06()  throws Throwable  {
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
         Integer integer0 = new Integer(993);
         treeSet0.add(integer0);
@@ -197,7 +197,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test07()  throws Throwable  {
+     void test07()  throws Throwable  {
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("7i@O");
         // Undeclared exception!
         try {
@@ -242,7 +242,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test09()  throws Throwable  {
+     void test09()  throws Throwable  {
         TreeSet<TreeSet<Integer>> treeSet0 = new TreeSet<TreeSet<Integer>>();
         Transformer<Object, TreeSet<Integer>> transformer0 = ConstantTransformer.nullTransformer();
         TransformedNavigableSet<TreeSet<Integer>> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<TreeSet<Integer>>) treeSet0, (Transformer<? super TreeSet<Integer>, ? extends TreeSet<Integer>>) transformer0);
@@ -263,7 +263,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test10()  throws Throwable  {
+     void test10()  throws Throwable  {
         Transformer<Boolean, Boolean> transformer0 = ExceptionTransformer.exceptionTransformer();
         TreeSet<Boolean> treeSet0 = new TreeSet<Boolean>();
         TransformedNavigableSet<Boolean> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Boolean>) treeSet0, (Transformer<? super Boolean, ? extends Boolean>) transformer0);
@@ -282,7 +282,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test11()  throws Throwable  {
+     void test11()  throws Throwable  {
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -304,7 +304,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test12()  throws Throwable  {
+     void test12()  throws Throwable  {
         Integer integer0 = new Integer((-1));
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -325,7 +325,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test13()  throws Throwable  {
+     void test13()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         treeSet0.add("7i@O");
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("7i@O");
@@ -345,7 +345,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test14()  throws Throwable  {
+     void test14()  throws Throwable  {
         Integer integer0 = new Integer((-1));
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
@@ -372,7 +372,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test15()  throws Throwable  {
+     void test15()  throws Throwable  {
         Transformer<Object, Boolean> transformer0 = ConstantTransformer.nullTransformer();
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         TransformedNavigableSet<Object> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Object>) treeSet0, (Transformer<? super Object, ?>) transformer0);
@@ -391,7 +391,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test16()  throws Throwable  {
+     void test16()  throws Throwable  {
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -413,7 +413,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test17()  throws Throwable  {
+     void test17()  throws Throwable  {
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
@@ -435,7 +435,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test18()  throws Throwable  {
+     void test18()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         TransformedNavigableSet<Object> transformedNavigableSet0 = null;
         try {
@@ -453,7 +453,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test19()  throws Throwable  {
+     void test19()  throws Throwable  {
         Integer integer0 = new Integer(1);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -474,7 +474,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test20()  throws Throwable  {
+     void test20()  throws Throwable  {
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
@@ -485,7 +485,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test21()  throws Throwable  {
+     void test21()  throws Throwable  {
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -496,7 +496,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test22()  throws Throwable  {
+     void test22()  throws Throwable  {
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
         Transformer<Object, Integer> transformer0 = InvokerTransformer.invokerTransformer("7i@O");
         TransformedNavigableSet<Object> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Object>) treeSet0, (Transformer<? super Object, ?>) transformer0);
@@ -506,7 +506,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test23()  throws Throwable  {
+     void test23()  throws Throwable  {
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
@@ -517,7 +517,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test24()  throws Throwable  {
+     void test24()  throws Throwable  {
         Transformer<Boolean, Boolean> transformer0 = CloneTransformer.cloneTransformer();
         TreeSet<Boolean> treeSet0 = new TreeSet<Boolean>();
         TransformedNavigableSet<Boolean> transformedNavigableSet0 = TransformedNavigableSet.transformedNavigableSet((NavigableSet<Boolean>) treeSet0, (Transformer<? super Boolean, ? extends Boolean>) transformer0);
@@ -527,7 +527,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test25()  throws Throwable  {
+     void test25()  throws Throwable  {
         Transformer<Boolean, Boolean> transformer0 = ExceptionTransformer.exceptionTransformer();
         TreeSet<Boolean> treeSet0 = new TreeSet<Boolean>();
         TransformedNavigableSet<Boolean> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Boolean>) treeSet0, (Transformer<? super Boolean, ? extends Boolean>) transformer0);
@@ -546,7 +546,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test26()  throws Throwable  {
+     void test26()  throws Throwable  {
         TreeSet<Boolean> treeSet0 = new TreeSet<Boolean>();
         Transformer<Boolean, Boolean> transformer0 = ExceptionTransformer.exceptionTransformer();
         TransformedNavigableSet<Boolean> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Boolean>) treeSet0, (Transformer<? super Boolean, ? extends Boolean>) transformer0);
@@ -566,7 +566,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test27()  throws Throwable  {
+     void test27()  throws Throwable  {
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
@@ -576,7 +576,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test28()  throws Throwable  {
+     void test28()  throws Throwable  {
         Integer integer0 = new Integer(0);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Object> treeSet0 = new TreeSet<Object>();
@@ -587,7 +587,7 @@ public void test00()  throws Throwable  {
 
     @Test
     @Timeout(4000)
-    public void test29()  throws Throwable  {
+     void test29()  throws Throwable  {
         Transformer<Boolean, Boolean> transformer0 = CloneTransformer.cloneTransformer();
         TreeSet<Boolean> treeSet0 = new TreeSet<Boolean>();
         TransformedNavigableSet<Boolean> transformedNavigableSet0 = TransformedNavigableSet.transformingNavigableSet((NavigableSet<Boolean>) treeSet0, (Transformer<? super Boolean, ? extends Boolean>) transformer0);
@@ -596,7 +596,7 @@ public void test00()  throws Throwable  {
     }
     @Test
     @Timeout(4000)
-    public void test30()  throws Throwable  {
+     void test30()  throws Throwable  {
         Integer integer0 = new Integer(1);
         ConstantTransformer<Object, Integer> constantTransformer0 = new ConstantTransformer<Object, Integer>(integer0);
         TreeSet<Integer> treeSet0 = new TreeSet<Integer>();
